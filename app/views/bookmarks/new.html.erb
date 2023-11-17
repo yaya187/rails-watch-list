@@ -1,0 +1,8 @@
+<%= simple_form_for [@list, @bookmark] do |f| %>
+   <%= f.association :movie %>
+    <%= f.input :comment %>
+     <%= f.hidden_field :list_id, value: @list.id %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= link_to 'Nouveau Signet', new_list_bookmark_path(@list) %>
