@@ -1,22 +1,24 @@
 /* custom.css */
 
 .custom-card {
-  height: 400px;
+  height: 500px;
   border-radius: 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .custom-card img {
   height: 200px; 
-  object-fit: cover; 
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
 }
 
 .custom-card-body {
   height: 250px; 
-  overflow: hidden; 
+  overflow: hidden;
+  background: $gray-1; 
 }
 
 .custom-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }

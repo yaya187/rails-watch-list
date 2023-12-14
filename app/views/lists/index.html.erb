@@ -1,7 +1,8 @@
 
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://image.tmdb.org/t/p/original/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg);">
   <div class="container text-center">
-    <h1>List of Movies <strong>Imerssion</strong> to <strong>Cinema</strong>!</h1>
+    <h1>List of Movies <strong>Imerssion</strong> to <strong>Cinema</strong>!
+      <strong> Take Pops Corns...</strong></h1>
   </div>
 </div>
 
@@ -14,6 +15,8 @@
         <div class="card-body custom-card-body">
           <h5 class="card-title"><%= movie.title %></h5>
           <p class="card-text"><%= movie.overview %></p>
+        </div>
+        <div class="card-footer">
           <%= link_to 'Details', movie_path(movie), class: "btn btn-primary rounded" %>
           <%= link_to 'Create Bookmark', new_list_bookmark_path(movie), class: "btn btn-secondary rounded" %>
         </div>
@@ -21,6 +24,7 @@
     </div>
   <% end %>
 </div>
+
 
 
 <% if @lists.present? %>
