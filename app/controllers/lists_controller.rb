@@ -16,7 +16,7 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     if @list.save
-      redirect_to lists_path
+      redirect_to @list, notice: "List was successfully created."
     else
       render :new
     end
