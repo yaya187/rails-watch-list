@@ -1,19 +1,41 @@
-<div class="container mt-4">
-  <h1 class="mb-4">List Movies</h1>
 
-  <% @lists.each do |list| %>
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-title"><%= link_to list.name, list_path(list) %></h5>
-      </div>
-    </div>
-  <% end %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://image.tmdb.org/t/p/original/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg);">
+  <div class="container text-center">
+    <h1>List of Movies <strong>Imerssion</strong> to <strong>Cinema</strong>!</h1>
+  </div>
+</div>
 
+
+<div class="row mt-5">
   <% @movies.each do |movie| %>
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-title"><%= link_to movie.title, movie_path(movie) %></h5>
+    <div class="col-md-4 mb-3">
+      <div class="card custom-card">
+        <%= image_tag(movie.poster_url, alt: movie.title, class: "card-img-top") %>
+        <div class="card-body custom-card-body">
+          <h5 class="card-title"><%= movie.title %></h5>
+          <p class="card-text"><%= movie.overview %></p>
+          <%= link_to 'Details', movie_path(movie), class: "btn btn-primary rounded" %>
+          <%= link_to 'Create Bookmark', new_list_bookmark_path(movie), class: "btn btn-secondary rounded" %>
+        </div>
       </div>
     </div>
   <% end %>
 </div>
+
+
+<% if @lists.present? %>
+  <h1>List of Lists</h1>
+  <div class="row">
+    <% @lists.each do |list| %>
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= list.name %></h5>
+            <%= link_to 'View List', list_path(list), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+

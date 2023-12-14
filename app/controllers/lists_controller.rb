@@ -1,34 +1,34 @@
 class ListsController < ApplicationController
-    def index
-        @lists = List.all
-        @movies = Movie.all 
+  rescue_from ActiveRecord::RecordNotFound, with: :handle_not_found
+  def index
+    @lists = List.all
+    @movies = Movie.all
+  end
+
+  def show
+    @list = List.find(params[:id])
+  end
+
+  def new
+    @list = List.new
+  end
+
+  def create
+    @list = List.new(list_params)
+    if @list.save
+      redirect_to lists_path
+    else
+      render :new
     end
+  end
 
-    def new
-        @list = List.new
-    end
+  private
 
-    def show
-        @bookmarks = Bookmark.where(list_id: params[:id])
-        @list = List.find(params[:id])
-        @movies = @list.movies
+  def list_params
+    params.require(:list).permit(:name, :created_at, :updated_at)
+  end
 
-    end
-
-    def create
-        @list = List.new(list_params)
-        
-        if @list.save
-          redirect_to list_path(@list)
-        else
-          render :new
-        end
-    end
-
-      private
-
-    def list_params
-     params.require(:list).permit(:name)
-    end
+  def handle_not_found
+    redirect_to root_path, alert: "List not found"
+  end
 end
-

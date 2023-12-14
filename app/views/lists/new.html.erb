@@ -1,12 +1,12 @@
-<div class="container mt-4">
-  <%= simple_form_for([@list, @review], html: { class: 'form' }) do |f| %>
+
+<div class="container">
+  <h1>New List</h1>
+
+  <%= simple_form_for @list do |f| %>
     <div class="form-group">
-      <%= f.label :content %>
-      <%= f.text_area :content, class: 'form-control' %>
+      <%= f.input :name, label: 'List Name', input_html: { class: 'form-control' } %>
     </div>
 
-    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    <%= f.button :submit, class: 'btn btn-primary' %>
   <% end %>
-
-  <%= link_to 'Back to Lists', lists_path, class: 'btn btn-secondary mt-3' %>
 </div>

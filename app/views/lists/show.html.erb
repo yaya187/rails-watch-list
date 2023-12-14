@@ -1,18 +1,18 @@
-<%= simple_form_for(@list, html: { multipart: true }) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :image, as: :file %>
-  <%= f.submit %>
-<% end %>
-<%= image_tag @list.image, alt: @list.name, width: 200 if @list.image.attached? %>
 
-<%= link_to "Delete List", list_path(@list), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
-
-<% @bookmarks.each do |bookmark| %>
-  <ul>
-    <li><%= bookmark.comment %></li>
-    <li><%= bookmark.movie.title %></li>
-    <li><%= bookmark.movie.overview %></li>
-    <li><%= bookmark.movie.rating %> </li>
-    <%= image_tag bookmark.movie.poster_url, alt: bookmark.movie.title, width: 200 %>
-  </ul>
-<% end %>
+<div class="container">
+  <h1><%= @list.name %></h1>
+<%= link_to 'Back to All Lists', lists_path, class: 'btn btn-secondary' %>
+  <div class="row">
+    <% @list.movies.each do |movie| %>
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <img class="card-img-top" src="<%= movie.poster_url %>" alt="<%= movie.title %>">
+          <div class="card-body">
+            <h5 class="card-title"><%= movie.title %></h5>
+            <p class="card-text"><%= movie.overview %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

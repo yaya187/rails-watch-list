@@ -1,24 +1,19 @@
-<h1>List of Movies</h1>
-
-<% @movies.each do |movie| %>
-  <div>
-    <%= image_tag(movie.poster_url, alt: movie.title, width: "100") %>
-    <h2><%= movie.title %></h2>
-    <p><%= movie.overview %></p>
-    
-    <%= link_to 'Details', movie_path(movie) %>
-    <%= link_to 'Create Bookmark', new_movie_bookmark_path(@movie) %>
+<div class="container mt-3">
+  <h1 class="mb-4">Movies</h1>
+  <div class="row">
+    <% @movies.each do |movie| %>
+      <div class="col-md-4 mb-3">
+        <div class="card h-100">
+          <%= image_tag(movie.poster_url, alt: movie.title, class: "card-img-top") if movie.poster_url.present? %>
+          <div class="card-body">
+            <h5 class="card-title"><%= movie.title %></h5>
+            <p class="card-text"><%= movie.overview %></p>
+          </div>
+          <div class="card-footer">
+            <%= link_to 'Details', movie_path(movie), class: 'btn btn-primary btn-block' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
-
-<% if @lists.present? %>
-  <h1>List of Lists</h1>
-  <% @lists.each do |list| %>
-    <div>
-      <h2><%= list.name %></h2>
-      
-      <%= link_to 'View List', list_path(list) %>
-    </div>
-  <% end %>
-<% end %>
-
+</div>

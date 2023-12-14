@@ -1,8 +1,15 @@
-<%= simple_form_for [@list, @bookmark] do |f| %>
-   <%= f.association :movie %>
-    <%= f.input :comment %>
-     <%= f.hidden_field :list_id, value: @list.id %>
-  <%= f.button :submit %>
-<% end %>
+<!-- app/views/bookmarks/new.html.erb -->
 
-<%= link_to 'Nouveau Signet', new_list_bookmark_path(@list) %>
+<h1>New Bookmark for <%= @list.name %></h1>
+
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <div class="form-group">
+    <%= f.input :comment, label: 'Comment', input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.association :movie, collection: Movie.all, prompt: "Choose a movie", input_html: { class: 'form-control' } %>
+  </div>
+
+  <%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>
