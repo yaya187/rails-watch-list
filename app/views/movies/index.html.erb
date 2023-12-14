@@ -1,0 +1,24 @@
+<h1>List of Movies</h1>
+
+<% @movies.each do |movie| %>
+  <div>
+    <%= image_tag(movie.poster_url, alt: movie.title, width: "100") %>
+    <h2><%= movie.title %></h2>
+    <p><%= movie.overview %></p>
+    
+    <%= link_to 'Details', movie_path(movie) %>
+    <%= link_to 'Create Bookmark', new_movie_bookmark_path(@movie) %>
+  </div>
+<% end %>
+
+<% if @lists.present? %>
+  <h1>List of Lists</h1>
+  <% @lists.each do |list| %>
+    <div>
+      <h2><%= list.name %></h2>
+      
+      <%= link_to 'View List', list_path(list) %>
+    </div>
+  <% end %>
+<% end %>
+

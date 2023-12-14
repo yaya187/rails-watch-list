@@ -1,13 +1,18 @@
-<%= @list.name %>
-<%= link_to "Delete",
-  list_path(@list),
-  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-%>
-    <% @bookmarks.each do |bookmark| %>
-   <ul><li> <%= bookmark.comment %></li>
+<%= simple_form_for(@list, html: { multipart: true }) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :image, as: :file %>
+  <%= f.submit %>
+<% end %>
+<%= image_tag @list.image, alt: @list.name, width: 200 if @list.image.attached? %>
+
+<%= link_to "Delete List", list_path(@list), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+
+<% @bookmarks.each do |bookmark| %>
+  <ul>
+    <li><%= bookmark.comment %></li>
     <li><%= bookmark.movie.title %></li>
     <li><%= bookmark.movie.overview %></li>
     <li><%= bookmark.movie.rating %> </li>
-<%= image_tag bookmark.movie.poster_url, alt: bookmark.movie.title, width: 200 %>
-    </ul>
-    <% end %> 
+    <%= image_tag bookmark.movie.poster_url, alt: bookmark.movie.title, width: 200 %>
+  </ul>
+<% end %>

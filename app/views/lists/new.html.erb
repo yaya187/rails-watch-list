@@ -1,5 +1,12 @@
-<!-- app/views/restaurants/_form.html.erb -->
-<%= simple_form_for(@list) do |f| %>
-  <%= f.input :name %>
-  <%= f.submit %>
-<% end %>
+<div class="container mt-4">
+  <%= simple_form_for([@list, @review], html: { class: 'form' }) do |f| %>
+    <div class="form-group">
+      <%= f.label :content %>
+      <%= f.text_area :content, class: 'form-control' %>
+    </div>
+
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+  <% end %>
+
+  <%= link_to 'Back to Lists', lists_path, class: 'btn btn-secondary mt-3' %>
+</div>

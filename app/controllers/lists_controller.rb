@@ -1,6 +1,7 @@
 class ListsController < ApplicationController
     def index
         @lists = List.all
+        @movies = Movie.all 
     end
 
     def new
@@ -10,14 +11,18 @@ class ListsController < ApplicationController
     def show
         @bookmarks = Bookmark.where(list_id: params[:id])
         @list = List.find(params[:id])
+        @movies = @list.movies
 
     end
 
     def create
         @list = List.new(list_params)
-        @list.save!
-
-        redirect_to list_path(@list)
+        
+        if @list.save
+          redirect_to list_path(@list)
+        else
+          render :new
+        end
     end
 
       private
