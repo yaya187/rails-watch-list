@@ -3,5 +3,4 @@ class Bookmark < ApplicationRecord
   belongs_to :list
 
   validates :comment, length: { minimum: 6, message: "must be at least 6 characters long" }
-  validates_uniqueness_of :movie_id, scope: :list_id
 end
