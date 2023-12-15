@@ -14,7 +14,10 @@ movies = JSON.parse(movies_serialized)
 
 puts "Clearing database..."
 Movie.destroy_all
+List.destroy_all
+Bookmark.destroy_all
 
+@list = List.create!(name: "Top 20 Movies")
 movies["results"].each do |movie|
   title = movie["title"]
   overview = movie["overview"]
@@ -22,5 +25,7 @@ movies["results"].each do |movie|
   rating = movie["vote_average"]
 
   new_movie = Movie.create!(title: title, overview: overview, poster_url: poster_url, rating: rating)
+  @bookmark = Bookmark.create!(comment: "Great movie!", list_id: @list.id, movie_id: new_movie.id)
+
   puts "Created #{new_movie.title}"
 end

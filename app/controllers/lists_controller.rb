@@ -25,7 +25,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name, :created_at, :updated_at)
+    params.require(:list).permit(:name, :created_at, :updated_at, :photo)
   end
 
   def handle_not_found
