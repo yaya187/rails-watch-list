@@ -28,12 +28,12 @@
 
 
 <% if @lists.present? %>
-  <h1>List of Lists</h1>
+  <h1> <strong>List of Lists</strong></h1>
   <div class="row">
     <% @lists.each do |list| %>
       <div class="col-md-4 mb-3">
-        <div class="card">
-          <div class="card-body">
+        <div class="card h-100 custom-card">
+          <div class="card-body d-flex flex-column">
             <h5 class="card-title"><%= list.name %></h5>
             <%= link_to 'View List', list_path(list), class: "btn btn-primary" %>
           </div>
